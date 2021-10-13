@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MGG</title>
+</head>
+
+<body>
+	<script>
+		const schedule = [{  //Цикл 371 година
+			imgURL: "Challenge Token",
+			timeDuration: 10800000//3 години в мілісекундах
+		}, {
+			imgURL: "Campaing Passes x5",
+			timeDuration: 108000000//1 день і 6 годин
+		}, {
+			imgURL: "Double XP-3days",
+			timeDuration: 36000000//10 годин
+		}, {
+			imgURL: "Critical Stirikes-3days",
+			timeDuration: 54000000//15 годин
+		}, {
+			imgURL: "Campaing Passes x25",
+			timeDuration: 129600000//1 день і 12 годин
+		}, {
+			imgURL: "Jackpot Token",
+			timeDuration: 68400000//19 годин
+		}, {
+			imgURL: "Anti-Critical Shield-1day",
+			timeDuration: 43200000//12 години
+		}, {
+			imgURL: "Reactor Token",
+			timeDuration: 10800000//3 години
+		}, {
+			imgURL: "Triple XP-3days",
+			timeDuration: 64800000//18 годин
+		}, {
+			imgURL: "Double Regeneration-7days",
+			timeDuration: 151200000//1 день і 18 годин
+		}, {
+			imgURL: "Critical Stirikes-7days",
+			timeDuration: 54000000//15 годин
+		}, {
+			imgURL: "Anti-Critical Shield-3days",
+			timeDuration: 43200000//12 години
+		}, {
+			imgURL: "Campaing Passes x25",
+			timeDuration: 86400000//1 день
+		}, {
+			imgURL: "Jackpot Token",
+			timeDuration: 129600000//1 день і 12 годин
+		}, {
+			imgURL: "Double Regeneration-3days",
+			timeDuration: 129600000//1 день і 12 годин
+		}, {
+			imgURL: "Triple XP-7days",
+			timeDuration: 86400000//1 день
+		}, {
+			imgURL: "Campaing Passes x25",
+			timeDuration: 43200000//12 години
+		}, {
+			imgURL: "Quadruple Regeneration-3days",
+			timeDuration: 86400000//1 день
+		}
+		];
+
+		const timeMilisecond = [
+			31557600000,//Рік
+			2629800000,//Місяць
+			// 604800016.56,//Тиждень
+			86400000,//День
+			3600000,//Година
+			60000,//Хвилина
+			1000//Cекунда
+		];
+
+		scheduleDuration = 0;
+		for (let j = 0; j < schedule.length; j++) {
+			scheduleDuration += schedule[j].timeDuration;
+		}
+
+		const startTime = 1633240713000 + 88000;  //Поки точно     //Похибка +7333.333 з кожним наступним айтемом.
+		let time = new Date();
+		let nowTime = Date.parse(time);
+
+		function scheduleNow(now, start) {
+			let elapsedTime = now - start;
+			if (elapsedTime >= scheduleDuration) {
+				elapsedTime -= scheduleDuration * Math.trunc(elapsedTime / scheduleDuration);
+			}
+			let i = elapsedTime;
+			let j = 0;
+			while (i >= schedule[j].timeDuration) {
+				// console.log(i, schedule[j].imgURL);
+				i -= schedule[j].timeDuration;
+				j++;
+				if (j >= schedule.length) j = 0;
+			}
+
+
+			// dateСalculation(schedule[j].timeDuration);
+			// console.log(i);
+			dateСalculation(schedule[j].timeDuration - i);
+
+		}
+
+
+		// let nm = 0;
+		var nowTimer = setInterval(myTimer, 1000);
+
+		function myTimer() {
+			// if (nm >= 5) stopTimer();
+			// console.log(nm);
+			// nm++
+
+			let time = new Date();
+			let nowTime = Date.parse(time);
+			scheduleNow(nowTime, startTime);
+		}
+
+		function stopTimer() {
+			clearInterval(nowTimer);
+		}
+
+
+		function dateСalculation(num) {
+			let days = [];
+			for (let i = 0; i < timeMilisecond.length; i++) {
+				// let n = Math.trunc(num / timeMilisecond[i]);
+				days[i] = Math.trunc(num / timeMilisecond[i]);
+				num -= days[i] * timeMilisecond[i];
+			}
+			console.log(days);
+		}
+	</script>
+</body>
+
+</html>
