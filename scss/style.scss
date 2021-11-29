@@ -54,7 +54,7 @@
 @font-face {
 	font-family: "Digital-7";
 	src: url("../IMG/font/digital-7.eot");
-	src: local("☺") url(../IMG/font/digital-7.ttf) format("truetype"), url(../IMG/font/digital-7.woff) format("woff"),
+	src: url("../IMG/font/digital-7.ttf") format("truetype"), url("../IMG/font/digital-7.woff") format("woff"),
 		url("../IMG/font/digital-7.woff2") format("woff2");
 	font-style: normal;
 	font-weight: normal;
@@ -354,6 +354,7 @@ main {
 	.event {
 		display: inline-flex;
 		flex-direction: column;
+		align-items: center;
 		.screen {
 			position: relative;
 			display: flex;
@@ -613,12 +614,12 @@ aside.info {
 				background: center/cover url(../IMG/items/Med_pack.png);
 				filter: drop-shadow(0px 0px 25px #89ccff) drop-shadow(0px 0px 50px #39a9fe)
 					drop-shadow(0px 0px 100px #305fa9);
+				z-index: -1;
 			}
 			&::before {
 				left: 55px;
 				top: 50%;
 				transform: translate(0, -50%) rotate(-45deg) scale(0.9);
-				z-index: -1;
 			}
 			&::after {
 				right: 55px;
@@ -798,6 +799,8 @@ aside.info {
 					font-family: "Digital-7";
 					color: var(--evo-center-color);
 					text-shadow: none;
+					font-style: normal;
+					font-weight: normal;
 					&:nth-child(1) {
 						font-size: 2rem;
 						bottom: 20%;

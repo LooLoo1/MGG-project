@@ -289,23 +289,24 @@ function dateСalculation(num) {//Переводитть мілісекунди 
 // }
 
 
-// let value = (styleDate(new Date()) !== localStorage.getItem('lastDayVisits')) ? { numberVisitsAdd();styleDate(new Date());} : localStorage.getItem('lastDayVisits')
+// let value = styleDate(new Date()) !== localStorage.getItem('lastDayVisits') ? {numberVisitsAdd() ;tyleDate(new Date())} : localStorage.getItem('lastDayVisits')
 
-// localStorage.setItem('lastDayVisits', (styleDate(new Date()) !== localStorage.getItem('lastDayVisits')) ? { numberVisitsAdd();styleDate(new Date());} : localStorage.getItem('lastDayVisits'));
-
-console.log();
-
-// styleDate(new Date());
+if (styleDate(new Date()) !== localStorage.getItem('lastDayVisits')) {
+	numberVisitsAdd();
+	localStorage.setItem('lastDayVisits', styleDate(new Date()));
+	if (Number(localStorage.getItem('numberVisits')) > 999) {
+		localStorage.setItem('numberVisits', 1);
+	}
+}
 function styleDate(d) {
 	return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
 }
-
-
 function numberVisitsAdd() {
 	localStorage.setItem('numberVisits', Number(localStorage.getItem('numberVisits')) + 1);
 }
 
-let lvl = getRandomInt(999);
+// let lvl = getRandomInt(999);
+let lvl = Number(localStorage.getItem('numberVisits'));
 console.log(lvl);
 
 const lvlEvoCenter = document.querySelector('.levels .content');
