@@ -167,9 +167,9 @@ function myTimer() {
 
 }
 
-function stopTimer() {
-	clearInterval(nowTimer);
-}
+// function stopTimer(t) {
+// 	clearInterval(t);
+// }
 
 function calculationBeginningEvents(p) {
 	for (let i = 0; i < selectEvents.length; i++) {
@@ -233,19 +233,19 @@ function dateСalculation(num) {//Переводитть мілісекунди 
 		days[i] = Math.trunc(num / timeMilisecond[i]);
 		num -= days[i] * timeMilisecond[i];
 	}
-	let stringDate = '';
-	let timeABR;
-	for (let j = 0; j < days.length; j++) {
-		if (days[j] != 0) {
-			if (j == 0) timeABR = 'y';
-			if (j == 1) timeABR = 'm';
-			if (j == 2) timeABR = 'd';
-			if (j == 3) timeABR = 'h';
-			if (j == 4) timeABR = 'm';
-			if (j == 5) timeABR = 's';
-			stringDate += days[j] + timeABR + ' ';
-		}
-	}
+	// let stringDate = '';
+	// let timeABR;
+	// for (let j = 0; j < days.length; j++) {
+	// 	if (days[j] != 0) {
+	// 		if (j == 0) timeABR = 'y';
+	// 		if (j == 1) timeABR = 'm';
+	// 		if (j == 2) timeABR = 'd';
+	// 		if (j == 3) timeABR = 'h';
+	// 		if (j == 4) timeABR = 'm';
+	// 		if (j == 5) timeABR = 's';
+	// 		stringDate += days[j] + timeABR + ' ';
+	// 	}
+	// }
 	// console.log(stringDate);//Повністю робоче
 	return days;
 }
@@ -289,8 +289,47 @@ function dateСalculation(num) {//Переводитть мілісекунди 
 // }
 
 
-// let value = styleDate(new Date()) !== localStorage.getItem('lastDayVisits') ? {numberVisitsAdd() ;tyleDate(new Date())} : localStorage.getItem('lastDayVisits')
 
+//Add main colors in website
+let season = new Date().getMonth() + 2;
+season = Math.ceil(season / 4) - 1;
+
+const seasonColorsValue = [{
+	SName: "Winter",
+	'--season-Bg': "#506d8d",
+	'--season-color1': "#506d8d",
+	'--season-color2': "#2571c6"
+}, {
+	SName: "Spring",
+	'--season-Bg': "#48385f",
+	'--season-color1': "#48385f",
+	'--season-color2': "#895297"
+}, {
+	SName: "Summer",
+	'--season-Bg': "transparent",
+	'--season-color1': "#ff9b25",
+	'--season-color2': "#ff9b25"
+}, {
+	SName: "Fall",
+	'--season-Bg': "#641811",
+	'--season-color1': "#641811",
+	'--season-color2': "#d11f1f"
+}];
+let rootCSS = document.documentElement.style;
+for (var key in seasonColorsValue[season]) {
+	rootCSS.setProperty(`${key}`, `${seasonColorsValue[season][key]}`);
+	// console.log(key, seasonColorsValue[season][key]);
+}
+
+
+
+
+
+
+
+
+
+// let value = styleDate(new Date()) !== localStorage.getItem('lastDayVisits') ? {numberVisitsAdd() ;tyleDate(new Date())} : localStorage.getItem('lastDayVisits')
 if (styleDate(new Date()) !== localStorage.getItem('lastDayVisits')) {
 	numberVisitsAdd();
 	localStorage.setItem('lastDayVisits', styleDate(new Date()));
@@ -305,15 +344,22 @@ function numberVisitsAdd() {
 	localStorage.setItem('numberVisits', Number(localStorage.getItem('numberVisits')) + 1);
 }
 
-// let lvl = getRandomInt(999);
+
+
+
+
+const levelAnimationSpeed = 50;//In miliseconds
+rootCSS.setProperty(`--level-speed`, `${levelAnimationSpeed / 1000}s`);
+
 let lvl = Number(localStorage.getItem('numberVisits'));
-console.log(lvl);
+console.log(`lvl evo = ${lvl}`);
 
 const lvlEvoCenter = document.querySelector('.levels .content');
 const questionsButton = document.querySelectorAll("button.info , button.exit");
 const infoPanel = document.querySelector("aside.info");
 const b = document.querySelector("body");
-// console.log(questionsButton);
+const level = document.querySelector(".levl");
+let lvlAnimationTimer;
 for (let i = 0; i < questionsButton.length; i++) {
 	questionsButton[i].addEventListener("click", () => {
 		infoPanel.classList.toggle('active');
@@ -322,13 +368,27 @@ for (let i = 0; i < questionsButton.length; i++) {
 		lvlEvoCenter.style.setProperty('--lvl', `${lvl}px`);
 		lvlEvoCenter.style.setProperty('--lvl-s', `${lvl}`);
 
-
+		// levelStylization(level.textContent);
+		if (level.textContent != levelStylization(lvl)) {
+			console.log(level.textContent, levelStylization(lvl));
+			lvlAnimationTimer = setInterval(lvlNumberAnimation, levelAnimationSpeed);// Запускає функцію таймер
+		}
 	})
 }
 
 
+function lvlNumberAnimation() {
+	level.textContent = levelStylization(Number(level.textContent) + 1);
+	if (level.textContent >= levelStylization(lvl)) clearInterval(lvlAnimationTimer);
+}
+
+function levelStylization(n) {
+	n = Number(n);
+	return (n < 10) ? `00${n}` : (n < 100) ? `0${n}` : n
+}
 
 
+// Animation neon text added spead
 const neonText = document.querySelector(".subtitle");
 for (let i = 1; i < neonText.children.length; i++) {
 	neonText.children[i].style.setProperty('--spead-animation-s', `${getRandomInt(6)}s`);
@@ -340,10 +400,9 @@ function getRandomInt(max) {
 }
 
 
-
+//Generate border-text 5px width (text-shadow) 
 const headerTimer = document.querySelector(".main");
 let borderWidth = 5;
-
 let bord = '';
 for (let i = -borderWidth; i < borderWidth + 1; i++) {
 	for (let j = -borderWidth; j < borderWidth + 1; j++) {
@@ -356,6 +415,57 @@ for (let i = 0; i < headerTimer.children.length; i++) {
 }
 
 
+
+const checkedConteiner = document.querySelector("main .list .conteiner");
+let checkedConteinerLast = document.createElement('div');
+let inputEvents = '';
+for (let i = 0; i < schedule.length; i++) {//active
+	// checkedConteinerLast.innerHTML += `<div class="list-item"style="--img:url(../IMG/items/${schedule[i].imgURL.split(' ').join('_').padEnd(schedule[i].imgURL.length + 4, ".png")}); --animation-deley: 1;"><input type="checkbox" name="" id="${schedule[i].imgURL}"><label for="${schedule[i].imgURL}"></label><span class="duration">24h</span></div>`;
+
+
+	// checkedConteinerLast.innerHTML = `
+	// <div class="list-item"
+	// 	style="--img:url(../IMG/items/${schedule[i].imgURL.split(' ').join('_').padEnd(schedule[i].imgURL.length + 4, ".png")}); --animation-deley: 1;">
+	// 	<input type="checkbox" name="" id="${schedule[i].imgURL}">
+	// 	<label for="${schedule[i].imgURL}">
+	// 	</label>
+	// 	<span class="duration">24h</span>
+	// </div>`;
+	// ${dateСalculation(schedule[i].timeDuration)}
+	// checkedConteinerLast.innerHTML += `!00`;
+
+	checkedConteiner.innerHTML += `<div class="list-item" style="--img:url(../IMG/items/${schedule[i].imgURL.split(' ').join('_').padEnd(schedule[i].imgURL.length + 4, ".png")}); --animation-deley: ${i + 1}s;"><input type="checkbox" name="" id="${schedule[i].imgURL}${[i]}"><label for="${schedule[i].imgURL}${[i]}"></label><span class="duration">${timeStyle(schedule[i].timeDuration)}</span></div>`;
+}
+// console.log(checkedConteiner.children);
+
+let checkedList = checkedConteiner.children;
+
+for (let i = 0; i < checkedList.length; i++) {
+	checkedList[i].classList.add("active");
+
+}
+checkedList[7].classList.add("now");
+
+
+// checkedConteiner.append(checkedConteinerLast); // вставить liLast в конец <ol>
+
+
+
+// checkedConteinerLast.innerHTML = 'append';
+
+
+
+// checkedConteiner.style.innerHTML = inputEvents;
+// console.dir(checkedConteiner);
+
+//При додаванні блоків генеруватимеш назву картинок яку підставлятимеш. Там де індекс 0 поставиш (i);
+// console.log(schedule[0].imgURL.split(' ').join('_').padEnd(schedule[0].imgURL.length + 4, ".png"));
+
+
+
+
+
+//Footer animation spead
 const footer = document.querySelector('footer');
 footer.style.setProperty('--speed-animation-s', `${getRandomInt(50) + 1}s`);
 
@@ -376,3 +486,28 @@ footer.style.setProperty('--speed-animation-s', `${getRandomInt(50) + 1}s`);
 
 // 	// console.log(Math.random() + 1);
 // }
+
+
+function timeStyle(num) {//Переводитть мілісекунди в дату
+	let days = [];
+	for (let i = 0; i < timeMilisecond.length; i++) {
+		days[i] = Math.trunc(num / timeMilisecond[i]);
+		num -= days[i] * timeMilisecond[i];
+	}
+	let stringDate = '',
+		timeABR;
+	for (let j = 0; j < days.length; j++) {
+		if (days[j] != 0) {
+			if (j == 0) timeABR = 'y';
+			if (j == 1) timeABR = 'm';
+			if (j == 2) timeABR = 'd';
+			if (j == 3) timeABR = 'h';
+			if (j == 4) timeABR = 'm';
+			if (j == 5) timeABR = 's';
+			stringDate += days[j] + timeABR + ' ';
+		}
+	}
+	return stringDate;
+}
+
+console.log(timeStyle(3155760450000354));
