@@ -13,6 +13,7 @@
   --text-border-2px: 1px 1px #000000, -1px 1px #000000, 1px -1px #000000, -1px -1px #000000, 1px 0px #000000,
 		-1px 0px #000000, 0px 1px #000000, 0px -1px #000000, 2px 2px #000000, -2px 2px #000000, 2px -2px #000000,
 		-2px -2px #000000, 2px 0px #000000, -2px 0px #000000, 0px 2px #000000, 0px -2px #000000;
+  --padding-LR: 11rem;
 }
 
 @font-face {
@@ -33,6 +34,16 @@
   font-weight: bold;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: var(--season-color-select);
+}
+
+::-moz-selection {
+  background-color: var(--season-color-select);
+}
+
+::selection {
+  background-color: var(--season-color-select);
 }
 
 a {
@@ -65,7 +76,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   font-size: 24px;
-  color: #fff;
+  color: var(--white);
   overflow-x: hidden;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0.5))), radial-gradient(115% 160% at 50% 100%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 65%, #000000 100%), -webkit-gradient(linear, left bottom, left top, from(var(--season-Bg)), to(var(--season-Bg))), url(../IMG/MGG-BG.png);
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), radial-gradient(115% 160% at 50% 100%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 65%, #000000 100%), linear-gradient(0deg, var(--season-Bg), var(--season-Bg)), url(../IMG/MGG-BG.png);
@@ -101,7 +112,7 @@ body.noScroll {
 .conteiner {
   margin: 0 auto;
   width: 100%;
-  max-width: 1140px;
+  max-width: 114rem;
 }
 
 input[type="checkbox"] {
@@ -113,12 +124,13 @@ input[type="checkbox"] {
 }
 
 header {
-  padding-top: 70px;
+  font-size: 1rem;
+  padding-top: 7rem;
 }
 
 header .subtitle {
   text-align: center;
-  font-size: 1.7em;
+  font-size: 4em;
   color: var(--neon-color);
 }
 
@@ -133,15 +145,15 @@ header .subtitle span {
 
 header .title {
   text-align: center;
-  margin-top: -10px;
-  font-size: 6em;
+  margin-top: -1rem;
+  font-size: 14.5em;
   text-shadow: var(--text-border-2px);
 }
 
 header .event-number {
   text-align: center;
-  margin-top: -25px;
-  font-size: 4em;
+  font-size: 9.6em;
+  margin-top: -2.5rem;
   text-shadow: var(--text-border-2px);
 }
 
@@ -154,8 +166,11 @@ header .main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
-  font-size: 4em;
+  font-size: 9.6em;
   width: 100%;
   min-height: 1.3em;
   cursor: pointer;
@@ -199,21 +214,13 @@ main {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  margin-top: 45px;
+  margin-top: 4.5rem;
 }
 
 .list {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  margin-bottom: 35px;
+  font-size: 1rem;
+  margin-bottom: 3.5em;
 }
 
 .list::before {
@@ -234,14 +241,26 @@ main {
           animation: item-list-order 10s linear 2s infinite both;
 }
 
+.list .conteiner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .list-item {
   position: relative;
   display: inline-block;
-  font-size: 0.8334em;
+  font-size: 2rem;
   width: 3.25em;
   height: 3.25em;
-  -webkit-transition: all calc(var(--animation-deley) * 0.3s) linear var(--animation-deley);
-  transition: all calc(var(--animation-deley) * 0.3s) linear var(--animation-deley);
   opacity: 0;
   -webkit-transform: translateY(150%);
           transform: translateY(150%);
@@ -254,7 +273,7 @@ main {
 }
 
 .list-item:not(:first-child) {
-  margin-left: -7px;
+  margin-left: -0.3em;
 }
 
 .list-item label,
@@ -319,14 +338,15 @@ main {
           transform: translateX(-50%);
 }
 
-.list-item.now label {
-  opacity: 1;
-}
-
-.list-item.now input[type="checkbox"]:checked ~ *,
-.list-item.now input[type="checkbox"] ~ * {
+.list-item.now {
   -webkit-filter: var(--filter) grayscale(0);
           filter: var(--filter) grayscale(0);
+}
+
+.list-item.now label {
+  opacity: 1;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
 }
 
 .list-item.now input[type="checkbox"]:checked ~ label::before, .list-item.now input[type="checkbox"]:checked ~ label::after {
@@ -356,7 +376,7 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .timers .event {
@@ -370,6 +390,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 2rem;
 }
 
 .timers .event .screen {
@@ -384,8 +405,8 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 270px;
-  height: 200px;
+  width: 13.5em;
+  height: 10em;
   background: center/cover url(../IMG/Border-item.png);
 }
 
@@ -410,37 +431,41 @@ main {
 }
 
 .timers .event .screen .event-name {
-  margin-top: 27px;
-  font-size: 0.834em;
+  font-size: 1em;
+  margin-top: 1.35em;
 }
 
 .timers .event .screen .event-duration {
-  margin-top: -2px;
-  font-size: 0.58em;
+  font-size: 0.7em;
+  margin-top: -0.14em;
 }
 
 .timers .event .screen .icon {
-  width: 85px;
-  height: 85px;
+  width: 4.25em;
+  height: 4.25em;
   background: center/cover url(../IMG/items/Jackpot_Token.png);
   margin: auto 0;
 }
 
 .timers .event .screen .timer {
-  font-size: 0.834em;
-  margin-bottom: 25px;
+  font-size: 1em;
+  margin-bottom: 1.25em;
 }
 
 .timers .event .time {
-  font-size: 0.834em;
+  font-size: 1em;
   text-align: center;
 }
 
+.timers .event .time span {
+  font-size: 0.9em;
+}
+
 footer {
+  font-size: 2.4rem;
   position: relative;
   min-height: 122px;
   padding: 50px 0 48px;
-  font-size: 1em;
   text-align: center;
   text-shadow: var(--text-border-1px);
   -webkit-filter: var(--filter);
@@ -451,13 +476,13 @@ footer {
 footer::after {
   content: "";
   position: absolute;
-  width: 1100px;
-  height: 1100px;
+  width: 110rem;
+  height: 110rem;
   top: calc(100% - 13px);
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  background: #ffffff;
+  background: var(--white);
   border-radius: 48% 50% 48% 45%;
   -webkit-animation: rotate-footer var(--speed-animation-s) linear infinite both;
           animation: rotate-footer var(--speed-animation-s) linear infinite both;
@@ -466,14 +491,14 @@ footer::after {
 button.info {
   display: block;
   position: fixed;
-  width: 40px;
-  height: 40px;
-  right: 110px;
-  top: 110px;
+  font-size: 3rem;
+  width: 1.334em;
+  height: 1.334em;
+  right: var(--padding-LR);
+  top: var(--padding-LR);
   cursor: pointer;
-  font-size: 1.25em;
   text-align: center;
-  background: #ffffff;
+  background: var(--white);
   color: #000;
   border-radius: 50%;
   -webkit-transition: all 0.2s ease-in-out;
@@ -505,7 +530,8 @@ aside.info {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  padding-bottom: 110px;
+  font-size: 1rem;
+  padding-bottom: 11rem;
 }
 
 aside.info.active {
@@ -535,17 +561,18 @@ aside.info .nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 110px 110px 0;
+  padding: var(--padding-LR) var(--padding-LR) 0;
   margin-bottom: 0px;
 }
 
 aside.info .nav .facebook,
 aside.info .nav .exit {
+  font-size: 3rem;
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 1.334em;
+  height: 1.334em;
   cursor: pointer;
-  background: #ffffff;
+  background: var(--white);
   border-radius: 50%;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -563,9 +590,9 @@ aside.info .nav .facebook {
 
 aside.info .nav .facebook a {
   position: absolute;
-  font-size: 5rem;
+  font-size: 1.667em;
   text-align: center;
-  padding: 2rem;
+  padding: 0.4em;
   color: #000;
   top: 70%;
   left: 53%;
@@ -574,10 +601,12 @@ aside.info .nav .facebook a {
 }
 
 aside.info .nav .facebook::before {
+  font-size: 0.8em;
+  padding: 0.333em;
   content: "My Facebook";
-  width: 150px;
-  height: 40px;
-  background: #ffffff;
+  width: 6.25em;
+  height: 1.667em;
+  background: var(--white);
   border-radius: 50px;
   position: absolute;
   top: 50%;
@@ -585,9 +614,7 @@ aside.info .nav .facebook::before {
   -webkit-transform: translate(-100%, -50%);
           transform: translate(-100%, -50%);
   color: #000000;
-  font-size: 2.4rem;
   text-align: center;
-  padding: 0.8rem;
   line-height: 100%;
   pointer-events: none;
   opacity: 0;
@@ -609,8 +636,8 @@ aside.info .nav .exit {
 aside.info .nav .exit::before, aside.info .nav .exit::after {
   content: "";
   position: absolute;
-  width: 4px;
-  height: 30px;
+  width: 0.1333em;
+  height: 1em;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%) rotate(0deg);
@@ -637,18 +664,19 @@ aside.info .content {
 
 aside.info .content .questions {
   position: relative;
-  font-size: 72px;
+  font-size: 7.2em;
   text-align: center;
-  color: #ffffff;
+  color: var(--white);
   text-shadow: 0px 0px 25px #89ccff, 0px 0px 50px #39a9fe, 0px 0px 100px #305fa9;
-  margin-bottom: 72px;
+  margin-bottom: 1em;
 }
 
 aside.info .content .questions::before, aside.info .content .questions::after {
+  font-size: 1rem;
   position: absolute;
   content: "";
-  width: 15rem;
-  height: 15rem;
+  width: 15em;
+  height: 15em;
   background: center/cover url(../IMG/items/Med_pack.png);
   -webkit-filter: drop-shadow(0px 0px 25px #89ccff) drop-shadow(0px 0px 50px #39a9fe) drop-shadow(0px 0px 100px #305fa9);
           filter: drop-shadow(0px 0px 25px #89ccff) drop-shadow(0px 0px 50px #39a9fe) drop-shadow(0px 0px 100px #305fa9);
@@ -656,14 +684,14 @@ aside.info .content .questions::before, aside.info .content .questions::after {
 }
 
 aside.info .content .questions::before {
-  left: 55px;
+  left: 10%;
   top: 50%;
   -webkit-transform: translate(0, -50%) rotate(-45deg) scale(0.9);
           transform: translate(0, -50%) rotate(-45deg) scale(0.9);
 }
 
 aside.info .content .questions::after {
-  right: 55px;
+  right: 10%;
   top: 50%;
   -webkit-transform: translate(0, -50%) rotate(8deg);
           transform: translate(0, -50%) rotate(8deg);
@@ -679,6 +707,7 @@ aside.info .interactive-background {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  font-size: 1rem;
 }
 
 aside.info .interactive-background .tips {
@@ -692,14 +721,16 @@ aside.info .interactive-background .tips {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  --animation-duration: 25s;
 }
 
 aside.info .interactive-background .tips .med-pack {
   position: relative;
-  width: 350px;
-  height: 255px;
+  width: 35em;
+  height: 25.5em;
   -webkit-filter: drop-shadow(0px 0px 25px #89ccff) drop-shadow(0px 0px 50px #39a9fe) drop-shadow(0px 0px 100px #305fa9);
           filter: drop-shadow(0px 0px 25px #89ccff) drop-shadow(0px 0px 50px #39a9fe) drop-shadow(0px 0px 100px #305fa9);
+  --animation-delay: 0s;
 }
 
 aside.info .interactive-background .tips .med-pack .item {
@@ -709,8 +740,8 @@ aside.info .interactive-background .tips .med-pack .item {
   --bottom: 0%;
   --left: 0%;
   --rotate: 0deg;
-  width: 90px;
-  height: 90px;
+  width: 9em;
+  height: 9em;
   bottom: var(--bottom);
   left: var(--left);
   -webkit-transform: scale(var(--scale-size)) rotate(var(--rotate));
@@ -722,71 +753,74 @@ aside.info .interactive-background .tips .med-pack .item {
 aside.info .interactive-background .tips .med-pack .item:nth-child(1) {
   --scale-size: 1;
   --z-index: 4;
-  --bottom: 31px;
-  --left: 28px;
+  --bottom: 3.1em;
+  --left: 2.8em;
   --rotate: -13deg;
 }
 
 aside.info .interactive-background .tips .med-pack .item:nth-child(2) {
   --scale-size: 1.3;
   --z-index: 5;
-  --bottom: 23px;
-  --left: 100px;
+  --bottom: 2.3em;
+  --left: 10em;
   --rotate: 0deg;
 }
 
 aside.info .interactive-background .tips .med-pack .item:nth-child(3) {
   --scale-size: 2;
   --z-index: 3;
-  --bottom: 45px;
-  --left: 190px;
+  --bottom: 4.5em;
+  --left: 19em;
   --rotate: 11deg;
 }
 
 aside.info .interactive-background .tips .med-pack .item:nth-child(4) {
   --scale-size: 2;
   --z-index: 2;
-  --bottom: 95px;
-  --left: 50px;
+  --bottom: 9.5em;
+  --left: 5em;
   --rotate: -13deg;
 }
 
 aside.info .interactive-background .tips .med-pack .item:nth-child(5) {
   --scale-size: 1.26;
   --z-index: 1;
-  --bottom: 100px;
-  --left: 140px;
+  --bottom: 10em;
+  --left: 14em;
   --rotate: 3deg;
 }
 
 aside.info .interactive-background .tips .boxing {
-  width: 180px;
-  height: 180px;
+  width: 18em;
+  height: 18em;
   background: center/cover url(../IMG/items/Kraft_box.png);
   -webkit-transform: rotate(-19.5deg) translate(-10px, -95px);
           transform: rotate(-19.5deg) translate(-10px, -95px);
   -webkit-filter: drop-shadow(0px 0px 25px #fff4fc) drop-shadow(0px 0px 50px #fa3531) drop-shadow(0px 0px 100px #8b1bad);
           filter: drop-shadow(0px 0px 25px #fff4fc) drop-shadow(0px 0px 50px #fa3531) drop-shadow(0px 0px 100px #8b1bad);
+  --animation-delay: 5s;
 }
 
 aside.info .interactive-background .tips .jackpot-token {
-  width: 140px;
-  height: 140px;
-  -webkit-transform: translateY(-30px);
-          transform: translateY(-30px);
+  width: 14em;
+  height: 14em;
+  -webkit-transform: translateY(-3em);
+          transform: translateY(-3em);
   background: center/cover url(../IMG/items/Jackpot_Token.png);
   -webkit-filter: drop-shadow(0px 0px 25px #fbf655) drop-shadow(0px 0px 50px #2bb866) drop-shadow(0px 0px 100px #06321b);
           filter: drop-shadow(0px 0px 25px #fbf655) drop-shadow(0px 0px 50px #2bb866) drop-shadow(0px 0px 100px #06321b);
+  --animation-delay: 10s;
 }
 
 aside.info .interactive-background .tips .gold {
   position: relative;
-  width: 275px;
-  height: 260px;
-  -webkit-transform: translate(-90px, -190px);
-          transform: translate(-90px, -190px);
+  width: 27.5em;
+  height: 26em;
+  -webkit-transform: translate(-9em, -19em);
+          transform: translate(-9em, -19em);
   -webkit-filter: drop-shadow(0px 0px 25px #fdfdcb) drop-shadow(0px 0px 50px #ffe970) drop-shadow(0px 0px 100px #b77118);
           filter: drop-shadow(0px 0px 25px #fdfdcb) drop-shadow(0px 0px 50px #ffe970) drop-shadow(0px 0px 100px #b77118);
+  --animation-delay: 15s;
 }
 
 aside.info .interactive-background .tips .gold .item {
@@ -796,8 +830,8 @@ aside.info .interactive-background .tips .gold .item {
   --bottom: 0%;
   --left: 0%;
   --rotate: 0deg;
-  width: 195px;
-  height: 195px;
+  width: 19.5em;
+  height: 19.5em;
   bottom: var(--bottom);
   left: var(--left);
   -webkit-transform: scale(var(--scale-size)) rotate(var(--rotate));
@@ -809,17 +843,30 @@ aside.info .interactive-background .tips .gold .item {
 aside.info .interactive-background .tips .gold .item:nth-child(1) {
   --scale-size: 1;
   --z-index: 1;
-  --bottom: 40px;
-  --left: 20px;
+  --bottom: 4em;
+  --left: 2em;
   --rotate: 12deg;
 }
 
 aside.info .interactive-background .tips .gold .item:nth-child(2) {
   --scale-size: 1;
   --z-index: 2;
-  --bottom: 20px;
-  --left: 60px;
+  --bottom: 2em;
+  --left: 6em;
   --rotate: 30deg;
+}
+
+aside.info .interactive-background .tips * {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  pointer-events: painted;
+  -webkit-animation: item-opacity var(--animation-duration) linear infinite var(--animation-delay) both;
+          animation: item-opacity var(--animation-duration) linear infinite var(--animation-delay) both;
+  -webkit-animation: item-levitation var(--speed-animation-s) linear infinite both;
+          animation: item-levitation var(--speed-animation-s) linear infinite both;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 aside.info .interactive-background .levels {
@@ -829,6 +876,8 @@ aside.info .interactive-background .levels {
   right: 0;
   bottom: 0;
   background: center/cover url(../IMG/EvolutionCenter/back-s.png);
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
 }
 
 aside.info .interactive-background .levels .content {
@@ -865,10 +914,11 @@ aside.info .interactive-background .levels .content span {
   text-shadow: none;
   font-style: normal;
   font-weight: normal;
+  pointer-events: painted;
 }
 
 aside.info .interactive-background .levels .content span:nth-child(1) {
-  font-size: 2rem;
+  font-size: 20px;
   bottom: 20%;
   left: 45%;
   -webkit-transform: translate(-50%, -50%);
@@ -876,7 +926,7 @@ aside.info .interactive-background .levels .content span:nth-child(1) {
 }
 
 aside.info .interactive-background .levels .content span:nth-child(2) {
-  font-size: 4.7rem;
+  font-size: 47px;
   bottom: 7%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -894,14 +944,9 @@ aside.info .interactive-background .levels .content .shadow {
   opacity: 0.7;
 }
 
-aside.info .interactive-background *,
-aside.info .interactive-background .levels {
-  pointer-events: painted;
-}
-
 ul {
   counter-reset: steps;
-  font-size: 3.2rem;
+  font-size: 3.2em;
 }
 
 li {
@@ -912,7 +957,7 @@ li {
 }
 
 li:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 0.8em;
 }
 
 li a {
@@ -934,6 +979,138 @@ li::before {
   display: inline-grid;
   place-items: center;
   line-height: 1.2em;
+}
+
+.schedule {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 10px;
+}
+
+.schedule__conteiner {
+  position: relative;
+  width: 40em;
+  height: 53em;
+  background: #d2dadc;
+  border: 4px solid #000000;
+  -webkit-box-shadow: inset 0px 1.6em 2em rgba(0, 0, 0, 0.31);
+          box-shadow: inset 0px 1.6em 2em rgba(0, 0, 0, 0.31);
+  border-radius: 3em;
+  padding: 3.2em 4em;
+}
+
+.schedule__conteiner button.close {
+  font-size: 1em;
+  position: absolute;
+  top: 4em;
+  right: calc(-4em + -2.5em);
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.schedule__conteiner button.close::before, .schedule__conteiner button.close::after {
+  content: "";
+  position: absolute;
+  width: 0.4em;
+  height: 3em;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+  background: #000000;
+  border-radius: 50px;
+  pointer-events: none;
+}
+
+.schedule__conteiner button.close::after {
+  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+          transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.schedule__conteiner button.close:hover {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+}
+
+.schedule__conteiner h2 {
+  font-size: 4em;
+  text-align: center;
+  text-shadow: var(--text-border-2px);
+  margin-bottom: 0.5em;
+}
+
+.schedule__conteiner ol {
+  font-size: 2.5em;
+}
+
+.schedule__conteiner ol li {
+  padding-left: 1em;
+  text-align: center;
+  margin-bottom: 0.2em;
+  text-shadow: var(--text-border-2px);
+}
+
+.schedule__icons .item {
+  position: absolute;
+  background: center/cover var(--img);
+  z-index: -10;
+}
+
+.schedule__icons .item:nth-child(1) {
+  top: -18%;
+  right: -20%;
+  width: 19em;
+  height: 19em;
+  -webkit-transform: rotate(5.5deg);
+          transform: rotate(5.5deg);
+  z-index: 1;
+}
+
+.schedule__icons .item:nth-child(2) {
+  top: 65%;
+  right: -20%;
+  width: 12em;
+  height: 12em;
+  -webkit-transform: rotate(110.5deg);
+          transform: rotate(110.5deg);
+}
+
+.schedule__icons .item:nth-child(3) {
+  bottom: -18%;
+  left: -22%;
+  width: 20em;
+  height: 20em;
+  -webkit-transform: rotate(14deg);
+          transform: rotate(14deg);
+}
+
+.schedule__icons .item:nth-child(4) {
+  bottom: 60%;
+  left: -14%;
+  width: 9.5em;
+  height: 9.5em;
+  -webkit-transform: rotate(-23.5deg);
+          transform: rotate(-23.5deg);
 }
 
 @-webkit-keyframes item-list-order {
@@ -1020,11 +1197,229 @@ li::before {
   }
 }
 
+@-webkit-keyframes item-opacity {
+  0%,
+  48%,
+  57%,
+  100% {
+    opacity: 1;
+  }
+  50%,
+  53% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes item-opacity {
+  0%,
+  48%,
+  57%,
+  100% {
+    opacity: 1;
+  }
+  50%,
+  53% {
+    opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes item-levitation {
+  0%,
+  50%,
+  100% {
+    margin-top: 0;
+  }
+  25% {
+    margin-top: -20px;
+  }
+  75% {
+    margin-top: 20px;
+  }
+}
+
+@keyframes item-levitation {
+  0%,
+  50%,
+  100% {
+    margin-top: 0;
+  }
+  25% {
+    margin-top: -20px;
+  }
+  75% {
+    margin-top: 20px;
+  }
+}
+
+@media (max-height: 1000px) {
+  html {
+    font-size: 0.9vmin;
+  }
+  .levels {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+
 @media (max-width: 1140px) {
   br {
     display: none;
   }
   .time br {
     display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  aside.info .conteiner {
+    padding: 0 var(--padding-LR);
+  }
+  aside.info .conteiner .questions::before {
+    left: 0%;
+  }
+  aside.info .conteiner .questions::after {
+    right: 0%;
+  }
+  aside.info .interactive-background .tips {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    margin-left: -10rem;
+  }
+}
+
+@media (max-width: 750px) {
+  header {
+    font-size: 1.4rem;
+  }
+  header .main {
+    font-size: 6.6em;
+  }
+  .list-item {
+    font-size: 3.5rem;
+  }
+  .timers .event {
+    font-size: 3.5rem;
+  }
+  footer {
+    font-size: 4.4rem;
+  }
+  aside.info .content {
+    font-size: 1vh;
+  }
+  aside.info .content .questions::before, aside.info .content .questions::after {
+    display: none;
+  }
+  aside.info .interactive-background {
+    font-size: 7px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  aside.info .interactive-background .tips {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    height: 90%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    margin-left: 0;
+    z-index: -2;
+  }
+  aside.info .interactive-background .tips .med-pack {
+    -webkit-transform: translate(-30vw, 0) rotate(-10deg);
+            transform: translate(-30vw, 0) rotate(-10deg);
+  }
+  aside.info .interactive-background .tips .boxing {
+    -webkit-transform: rotate(-14.5deg) translate(15em, 4em);
+            transform: rotate(-14.5deg) translate(15em, 4em);
+  }
+  aside.info .interactive-background .tips .jackpot-token {
+    -webkit-transform: translate(-15em, -3em);
+            transform: translate(-15em, -3em);
+  }
+  aside.info .interactive-background .tips .gold {
+    -webkit-transform: translate(10em, 0);
+            transform: translate(10em, 0);
+  }
+  aside.info .interactive-background .tips * {
+    -webkit-animation-play-state: running;
+            animation-play-state: running;
+  }
+  aside.info .interactive-background .levels {
+    right: 50%;
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    bottom: var(--padding-LR);
+    z-index: -5;
+  }
+  .facebook,
+  .exit,
+  button.info {
+    font-size: 5rem !important;
+  }
+}
+
+@media (max-width: 550px) {
+  aside.info .content {
+    font-size: 0.9vh;
+  }
+  aside.info .content .questions {
+    margin-bottom: 0.5em;
+  }
+  aside.info .interactive-background .tips .med-pack {
+    -webkit-transform: translate(-25vw, -30vw) rotate(-10deg) scale(0.9);
+            transform: translate(-25vw, -30vw) rotate(-10deg) scale(0.9);
+  }
+  aside.info .interactive-background .tips .boxing {
+    -webkit-transform: rotate(-14.5deg) translate(20em, 0em);
+            transform: rotate(-14.5deg) translate(20em, 0em);
+  }
+  aside.info .interactive-background .tips .jackpot-token {
+    -webkit-transform: translate(-15em, -7em);
+            transform: translate(-15em, -7em);
+  }
+  aside.info .interactive-background .tips .gold {
+    -webkit-transform: translate(15em, 0);
+            transform: translate(15em, 0);
+  }
+}
+
+@media (max-width: 450px) {
+  aside.info .content {
+    font-size: 0.8vh;
+  }
+  aside.info .interactive-background .tips .med-pack {
+    -webkit-transform: translate(-20vw, -15vh) rotate(-10deg);
+            transform: translate(-20vw, -15vh) rotate(-10deg);
+  }
+  aside.info .interactive-background .tips .boxing {
+    -webkit-transform: rotate(-14.5deg) translate(15em, -4em);
+            transform: rotate(-14.5deg) translate(15em, -4em);
+  }
+  aside.info .interactive-background .tips .jackpot-token {
+    -webkit-transform: translate(-15em, -3em);
+            transform: translate(-15em, -3em);
+  }
+  aside.info .interactive-background .tips .gold {
+    -webkit-transform: translate(10em, 0);
+            transform: translate(10em, 0);
+  }
+  aside.info .interactive-background .levels {
+    z-index: -1;
   }
 }
