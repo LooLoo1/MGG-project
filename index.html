@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MGG-timer events</title>
+	<title>MGG events</title>
 	<link rel="shortcut icon" href="IMG/favi.png" type="image/png">
 	<meta name="description"
 		content="This site was created by a fan as a handy tool in the game 'Mutants: Genetic Gladiators', so as not to miss useful events in the creation of objects.">
@@ -13,7 +13,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/style.min.css" type="text/css">
 
 </head>
 
@@ -28,7 +28,6 @@
 		<p class="event-number">8 of 18 events</p>
 		<input type="checkbox" name="header-timer" id="header-timer">
 		<label class="main" for="header-timer">
-			<!-- Добав чекбокс -->
 			<p class="main-timer">23 h 19 min 37 s</p>
 			<p class="main-end">END: Sat Oct 23 2021 06:00:00</p>
 		</label>
@@ -41,7 +40,7 @@
 		</section>
 
 		<section class="timers conteiner">
-			<div class="event">
+			<!-- <div class="event">
 				<div class="screen">
 					<h2 class="event-name">Jackpot Token</h2>
 					<p class="event-duration">Duration: 19h</p>
@@ -88,7 +87,7 @@
 					START: <span>Fri Oct 22 2021 18:00:00</span><br>
 					END: <span>Sat Oct 23 2021 06:00:00</span>
 				</p>
-			</div>
+			</div> -->
 		</section>
 	</main>
 
@@ -98,7 +97,8 @@
 	<button class="info">?</button>
 	<aside class="info">
 		<div class="nav">
-			<button class="facebook"><a href="https://www.facebook.com/profile.php?id=100014987294536">f</a></button>
+			<button class="facebook"><a tabindex="-1"
+					href="https://www.facebook.com/profile.php?id=100014987294536">f</a></button>
 			<button class="exit"></button>
 		</div>
 		<!-- <div class="conteiner"> -->
@@ -141,21 +141,10 @@
 		<!-- </div> -->
 	</aside>
 
-	<section class="schedule" style="--img:url(../IMG/items/Reactor_Token.png)">
+	<section class="schedule">
 		<div class="schedule__conteiner">
-
 			<h2>Painting:</h2>
 			<ol>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
-				<li>Sun Oct 24 2021 01:00:00 </li>
 			</ol>
 			<button class="close"></button>
 
@@ -170,7 +159,7 @@
 
 
 
-	<script src="main.js"></script>
+	<script src="main.min.js"></script>
 </body>
 
 </html>

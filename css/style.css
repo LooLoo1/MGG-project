@@ -61,8 +61,17 @@ span,
   text-shadow: 1px 1px #000000, -1px 1px #000000, 1px -1px #000000, -1px -1px #000000;
 }
 
+button,
+a {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+}
+
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -124,6 +133,16 @@ input[type="checkbox"] {
 }
 
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 1rem;
   padding-top: 7rem;
 }
@@ -144,6 +163,7 @@ header .subtitle span {
 }
 
 header .title {
+  max-width: 75%;
   text-align: center;
   margin-top: -1rem;
   font-size: 14.5em;
@@ -174,6 +194,8 @@ header .main {
   width: 100%;
   min-height: 1.3em;
   cursor: pointer;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
 header .main-timer {
@@ -208,6 +230,11 @@ header input[type="checkbox"]:checked + label.main .main-end {
   pointer-events: painted;
   -webkit-transition: opacity 0.3 linear;
   transition: opacity 0.3 linear;
+}
+
+header input[type="checkbox"]:focus-visible + label.main {
+  -webkit-filter: drop-shadow(0 5px 5px #000) drop-shadow(0 0 100px #000);
+          filter: drop-shadow(0 5px 5px #000) drop-shadow(0 0 100px #000);
 }
 
 main {
@@ -367,6 +394,14 @@ main {
           filter: blur(0px);
 }
 
+.list input[type="checkbox"]:focus-visible ~ label {
+  width: 120%;
+  height: 120%;
+  opacity: 1;
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+}
+
 .timers {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -377,6 +412,8 @@ main {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   margin-bottom: 0.5rem;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
 .timers .event {
@@ -391,6 +428,18 @@ main {
       -ms-flex-align: center;
           align-items: center;
   font-size: 2rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.timers .event:focus-visible {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .timers .event .screen {
@@ -419,6 +468,8 @@ main {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
   background: linear-gradient(240deg, #1479ba 5%, #29b476 95%);
   z-index: -1;
 }
@@ -441,9 +492,9 @@ main {
 }
 
 .timers .event .screen .icon {
-  width: 4.25em;
-  height: 4.25em;
-  background: center/cover url(../IMG/items/Jackpot_Token.png);
+  min-width: 4em;
+  min-height: 4em;
+  background: center/cover var(--img);
   margin: auto 0;
 }
 
@@ -461,10 +512,16 @@ main {
   font-size: 0.9em;
 }
 
+.timers .event:hover .screen::before,
+.timers .event:focus .screen::before {
+  -webkit-filter: hue-rotate(var(--season-screen));
+          filter: hue-rotate(var(--season-screen));
+}
+
 footer {
   font-size: 2.4rem;
   position: relative;
-  min-height: 122px;
+  min-height: 120px;
   padding: 50px 0 48px;
   text-align: center;
   text-shadow: var(--text-border-1px);
@@ -504,9 +561,10 @@ button.info {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 0.4;
+  z-index: 1000;
 }
 
-button.info:hover {
+button.info:hover, button.info:focus-visible {
   opacity: 1;
 }
 
@@ -526,7 +584,7 @@ aside.info {
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
+  z-index: 1001;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -579,8 +637,9 @@ aside.info .nav .exit {
   opacity: 0.4;
 }
 
-aside.info .nav .facebook:hover,
-aside.info .nav .exit:hover {
+aside.info .nav .facebook:hover, aside.info .nav .facebook:focus-visible,
+aside.info .nav .exit:hover,
+aside.info .nav .exit:focus-visible {
   opacity: 1;
 }
 
@@ -623,7 +682,7 @@ aside.info .nav .facebook::before {
   z-index: 1;
 }
 
-aside.info .nav .facebook:hover::before {
+aside.info .nav .facebook:hover::before, aside.info .nav .facebook:focus-visible::before {
   opacity: 1;
   -webkit-transform: translate(15px, -50%);
           transform: translate(15px, -50%);
@@ -651,7 +710,7 @@ aside.info .nav .exit::after {
           transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-aside.info .nav .exit:hover {
+aside.info .nav .exit:hover, aside.info .nav .exit:focus-visible {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
@@ -695,6 +754,49 @@ aside.info .content .questions::after {
   top: 50%;
   -webkit-transform: translate(0, -50%) rotate(8deg);
           transform: translate(0, -50%) rotate(8deg);
+}
+
+aside.info ul {
+  counter-reset: steps;
+  font-size: 3.2em;
+}
+
+aside.info li {
+  position: relative;
+  counter-increment: steps;
+  list-style-type: none;
+  padding-left: 1.2em;
+}
+
+aside.info li:not(:last-child) {
+  margin-bottom: 0.8em;
+}
+
+aside.info li a {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+aside.info li a:focus-visible {
+  -webkit-filter: brightness(2);
+          filter: brightness(2);
+}
+
+aside.info li a:active,
+aside.info li a:hover {
+  opacity: 0.8;
+}
+
+aside.info li::before {
+  position: absolute;
+  content: counter(steps) ".";
+  width: 1.2em;
+  height: 1.2em;
+  left: 0;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  place-items: center;
+  line-height: 1.2em;
 }
 
 aside.info .interactive-background {
@@ -863,8 +965,8 @@ aside.info .interactive-background .tips * {
   pointer-events: painted;
   -webkit-animation: item-opacity var(--animation-duration) linear infinite var(--animation-delay) both;
           animation: item-opacity var(--animation-duration) linear infinite var(--animation-delay) both;
-  -webkit-animation: item-levitation var(--speed-animation-s) linear infinite both;
-          animation: item-levitation var(--speed-animation-s) linear infinite both;
+  -webkit-animation: item-levitation var(--speed-animation-s) ease-in-out infinite both;
+          animation: item-levitation var(--speed-animation-s) ease-in-out infinite both;
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
@@ -944,49 +1046,11 @@ aside.info .interactive-background .levels .content .shadow {
   opacity: 0.7;
 }
 
-ul {
-  counter-reset: steps;
-  font-size: 3.2em;
-}
-
-li {
-  position: relative;
-  counter-increment: steps;
-  list-style-type: none;
-  padding-left: 1.2em;
-}
-
-li:not(:last-child) {
-  margin-bottom: 0.8em;
-}
-
-li a {
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-
-li a:active {
-  opacity: 0.8;
-}
-
-li::before {
-  position: absolute;
-  content: counter(steps) ".";
-  width: 1.2em;
-  height: 1.2em;
-  left: 0;
-  display: -ms-inline-grid;
-  display: inline-grid;
-  place-items: center;
-  line-height: 1.2em;
-}
-
 .schedule {
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -999,18 +1063,39 @@ li::before {
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   font-size: 10px;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.schedule.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .schedule__conteiner {
   position: relative;
-  width: 40em;
-  height: 53em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background: #d2dadc;
   border: 4px solid #000000;
   -webkit-box-shadow: inset 0px 1.6em 2em rgba(0, 0, 0, 0.31);
           box-shadow: inset 0px 1.6em 2em rgba(0, 0, 0, 0.31);
   border-radius: 3em;
-  padding: 3.2em 4em;
+  padding: 3.2em 6em;
+  max-height: 100vh;
 }
 
 .schedule__conteiner button.close {
@@ -1046,7 +1131,7 @@ li::before {
           transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-.schedule__conteiner button.close:hover {
+.schedule__conteiner button.close:hover, .schedule__conteiner button.close:focus-visible {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   opacity: 1;
@@ -1060,20 +1145,31 @@ li::before {
 }
 
 .schedule__conteiner ol {
+  margin-left: 1em;
   font-size: 2.5em;
 }
 
 .schedule__conteiner ol li {
-  padding-left: 1em;
-  text-align: center;
+  padding-left: 0.5em;
   margin-bottom: 0.2em;
   text-shadow: var(--text-border-2px);
+}
+
+.schedule__conteiner ol li::before {
+  bottom: 0.03em;
+  display: none;
 }
 
 .schedule__icons .item {
   position: absolute;
   background: center/cover var(--img);
   z-index: -10;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.schedule__icons .item:hover {
+  opacity: 0.2;
 }
 
 .schedule__icons .item:nth-child(1) {
@@ -1291,6 +1387,9 @@ li::before {
   header {
     font-size: 1.4rem;
   }
+  header .title {
+    max-width: 100%;
+  }
   header .main {
     font-size: 6.6em;
   }
@@ -1371,6 +1470,73 @@ li::before {
   .exit,
   button.info {
     font-size: 5rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .schedule {
+    font-size: 3rem;
+  }
+  .schedule__conteiner {
+    width: 100vw;
+    height: 100vh;
+    border: 0px solid #000000;
+    border-radius: 0em;
+    padding: 3.2em 4em;
+  }
+  .schedule__conteiner button.close {
+    right: 2.5em;
+  }
+  .schedule__icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  .schedule__icons .item {
+    z-index: 1;
+  }
+  .schedule__icons .item:nth-child(1) {
+    top: 18%;
+    right: 20%;
+    width: 19rem;
+    height: 19rem;
+    -webkit-transform: rotate(5.5deg) scale(1.5);
+            transform: rotate(5.5deg) scale(1.5);
+  }
+  .schedule__icons .item:nth-child(2) {
+    top: 65%;
+    right: 20%;
+    width: 12rem;
+    height: 12rem;
+    -webkit-transform: rotate(110.5deg);
+            transform: rotate(110.5deg);
+  }
+  .schedule__icons .item:nth-child(3) {
+    bottom: 18%;
+    left: 22%;
+    width: 20rem;
+    height: 20rem;
+    -webkit-transform: rotate(14deg) scale(1.2);
+            transform: rotate(14deg) scale(1.2);
+  }
+  .schedule__icons .item:nth-child(4) {
+    bottom: 60%;
+    left: 14%;
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+}
+
+@media (max-height: 550px) {
+  .schedule {
+    font-size: 2rem;
+  }
+  .schedule__conteiner {
+    height: 100vh;
+    border-radius: 0em;
+    padding: 3.2em 4em;
   }
 }
 
