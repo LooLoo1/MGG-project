@@ -1007,6 +1007,7 @@ aside.info {
 
 	opacity: 0;
 	visibility: hidden;
+	z-index: 10000;
 	&.visible {
 		opacity: 1;
 		visibility: visible;

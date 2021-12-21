@@ -505,8 +505,7 @@ function calculationBeginningEvents(p) {
 		let t = [];
 		t[0] = timer;
 
-		j++;
-		if (j == schedule.length) j = 0;
+		if (j >= schedule.length) j = 0;
 		addTime += schedule[j].timeDuration;
 		timer = p[2] + addTime + nowTime
 		t[1] = timer;
