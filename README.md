@@ -13,7 +13,8 @@
    on the screen you need to click before you sell the Easter egg 
 6. The level in the screen of questions will rise daily and is also stored in local events, and when they 
    open play a unique animation 💫⬆ 
-   (For demonstration in the local store you can change the value to any within 999 and look at the animation)
+   (For demonstration in the local store you can change the value to any within 999 and look at the 
+   animation)
 7. Current event (n to 18 in real time)
 8. Timer to wait for selected events
 9. Date and time of start and end of selected events
